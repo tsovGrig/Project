@@ -7,6 +7,9 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { NewOrdersComponent } from './new-orders/new-orders.component';
+import { ProfileComponent } from './profile/profile.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { SeenOrdersComponent } from './seen-orders/seen-orders.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,10 @@ import { NewOrdersComponent } from './new-orders/new-orders.component';
     LoginComponent,
     DashboardComponent,
     MainLayoutComponent,
-    NewOrdersComponent
+    NewOrdersComponent,
+    ProfileComponent,
+    RegistrationComponent,
+    SeenOrdersComponent
   ],
   imports: [
     BrowserModule,
