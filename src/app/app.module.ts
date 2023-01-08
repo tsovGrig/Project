@@ -9,7 +9,7 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
 import { NewOrdersComponent } from './new-orders/new-orders.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { SeenOrdersComponent } from './seen-orders/seen-orders.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { SeenOrdersComponent } from './seen-orders/seen-orders.component';
     NewOrdersComponent,
     ProfileComponent,
     RegistrationComponent,
-    SeenOrdersComponent
+    OrderDetailsComponent,
   ],
   imports: [
     BrowserModule,
