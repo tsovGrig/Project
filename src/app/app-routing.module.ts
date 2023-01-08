@@ -9,7 +9,7 @@ import {NewOrdersComponent} from "./new-orders/new-orders.component";
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   {path:'login', component: LoginComponent},
-  {path:'registration', component: RegistrationComponent},
+  // {path:'registration', component: RegistrationComponent},
   {path:'dashboard', component: DashboardComponent},
   {path:'profile', component:ProfileComponent},
   {path:'new-orders', component:NewOrdersComponent},

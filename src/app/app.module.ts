@@ -10,6 +10,7 @@ import { NewOrdersComponent } from './new-orders/new-orders.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
+import { ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,13 +1,12 @@
 
 .container{
+  width:100%;
   margin-top:50px;
   display:flex;
   justify-content: center;
 }
 .login-form{
   width:50%;
-  padding:20px;
-  background-color: azure;
 }
 
 .label-form{
@@ -15,6 +14,7 @@
   max-width: 100%;
   margin-bottom: 5px;
   font-weight: 400;
+  font-size: 14px;
 }
 
 button{
