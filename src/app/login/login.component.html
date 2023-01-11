@@ -1,6 +1,6 @@
  <div class="container">
   <div class="login-form">
-  <form>
+  <form [formGroup]="userForm">
     <!--Email Input -->
     <div class="mb-3">
       <label for="email"
@@ -10,7 +10,8 @@
       <input type="email"
              class="form-control"
              id="email"
-             placeholder="email">
+             placeholder="email"
+             formControlName="email">
     </div>
     <!--Password input-->
     <div class="mb-3">
@@ -21,11 +22,12 @@
       <input type="password"
              class="form-control"
              id="password"
-             placeholder="password">
-<!--      <div id="password-help-block"-->
-<!--           class="form-text">-->
-<!--        Password needs to be 8 characters long-->
-<!--      </div>-->
+             placeholder="password"
+             formControlName="password">
+      <div *ngIf="!isValid() || !valid;" id="password-help-block" style="color:red;"
+           class="form-text">
+        Email and password are required.
+      </div>
     </div>
     <!--Checkbox -->
 <!--    <div class="mb-3 form-check">-->
@@ -39,7 +41,8 @@
 <!--    </div>-->
     <!-- Submit Button -->
     <button type="submit"
-            class="btn btn-primary">
+            class="btn btn-primary"
+    (click)="login()">
       Submit
     </button>
   </form>

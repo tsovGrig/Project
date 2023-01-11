@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";
+import {UserService} from "../services/user.service";
+import {Login} from "../interfaces/user.interface";
 
 @Component({
   selector: 'app-login',
@@ -8,15 +10,34 @@ import {FormBuilder} from "@angular/forms";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  profileForm = this.fb.group({
-    email:[''],
-    password:[''],
+  valid:boolean = true;
+  userForm = this.fb.group({
+    email:['', Validators.required],
+    password:['', Validators.required],
   });
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private userService:UserService
+    ) {
     localStorage.setItem('users',JSON.stringify([{firstname:'guestFirstname', lastname:'guestLastname', password:'guest', phone:'+374 55 55 55', email:'@guest@gmail.com'}]));
   }
 
+  login(){
+    if(this.userForm.valid){
+      this.userService.login(this.userForm.value);
+    }
+    this.valid = false;
+    this.router.navigate(['/login']);
+  }
+
+  isValid(){
+    if(this.userForm.controls.email.touched && this.userForm.controls.password.touched ){
+      return this.userForm.valid;
+    }
+    return true;
+  }
 
 
 }

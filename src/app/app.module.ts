@@ -11,6 +11,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { ReactiveFormsModule} from "@angular/forms";
+import {UserService} from "./services/user.service";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { ReactiveFormsModule} from "@angular/forms";
     AppRoutingModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
