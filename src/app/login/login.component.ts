@@ -11,6 +11,7 @@ import {Login} from "../interfaces/user.interface";
 })
 export class LoginComponent {
   valid:boolean = true;
+  userExist:boolean = true;
 
 
   userForm = this.fb.group({
@@ -21,7 +22,7 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    public userService:UserService
+    private userService:UserService
     ) {
     localStorage.setItem('users',JSON.stringify([{firstname:'guestFirstname', lastname:'guestLastname', password:'guest', phone:'+374 55 55 55', email:'guest@gmail.com'}]));
   }
@@ -32,16 +33,26 @@ export class LoginComponent {
       const userExist = this.userService.login(this.userForm.value);
       if(userExist){
         this.router.navigate(['/dashboard']);
+      }else{
+        this.userExist = false;
       }
     }else{
-      this.valid = false;
-      this.router.navigate(['/login']);
+      this.valid=false;
     }
   }
 
   isValid(){
     if(this.userForm.controls.email.touched && this.userForm.controls.password.touched ){
       return this.userForm.valid;
+    }
+    return true;
+  }
+
+  userNotExist(){
+    if(this.valid){
+      if(!this.userExist){
+        return false;
+      }
     }
     return true;
   }

@@ -28,7 +28,7 @@
            class="form-text">
         Email and password are required.
       </div>
-      <div *ngIf="!userService.valid;"  style="color:red;"
+      <div *ngIf="!userNotExist();"  style="color:red;"
            class="form-text">
         Email or password is wrong.
       </div>

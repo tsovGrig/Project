@@ -1,6 +1,5 @@
 import {Login} from "../interfaces/user.interface"
 export class UserService {
-  valid:boolean = true;
   constructor() {
   }
 
@@ -21,12 +20,14 @@ export class UserService {
     });
 
     if(findUser){
-      this.valid = true;
       localStorage.setItem('loggedInUser', JSON.stringify(findUser));
       return true;
     }else{
-      this.valid = false;
       return false;
     }
+  }
+
+  logout(){
+    localStorage.removeItem('loggedInUser');
   }
 }

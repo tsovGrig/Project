@@ -5,14 +5,15 @@ import {RegistrationComponent} from "./registration/registration.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {NewOrdersComponent} from "./new-orders/new-orders.component";
+import {AuthGuard} from "./guards/auth-guard.guard";
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   {path:'login', component: LoginComponent},
   // {path:'registration', component: RegistrationComponent},
-  {path:'dashboard', component: DashboardComponent},
-  {path:'profile', component:ProfileComponent},
-  {path:'new-orders', component:NewOrdersComponent},
+  {path:'dashboard',  canActivate: [AuthGuard],component: DashboardComponent},
+  {path:'profile', canActivate: [AuthGuard], component:ProfileComponent},
+  {path:'new-orders', canActivate: [AuthGuard], component:NewOrdersComponent},
 
 
 ];

@@ -12,6 +12,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { ReactiveFormsModule} from "@angular/forms";
 import {UserService} from "./services/user.service";
+import {AuthGuard} from "./guards/auth-guard.guard";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import {UserService} from "./services/user.service";
     AppRoutingModule,
     ReactiveFormsModule,
   ],
-  providers: [UserService],
+  providers: [UserService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
