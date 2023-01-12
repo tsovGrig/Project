@@ -11,6 +11,8 @@ import {Login} from "../interfaces/user.interface";
 })
 export class LoginComponent {
   valid:boolean = true;
+
+
   userForm = this.fb.group({
     email:['', Validators.required],
     password:['', Validators.required],
@@ -19,17 +21,22 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private userService:UserService
+    public userService:UserService
     ) {
-    localStorage.setItem('users',JSON.stringify([{firstname:'guestFirstname', lastname:'guestLastname', password:'guest', phone:'+374 55 55 55', email:'@guest@gmail.com'}]));
+    localStorage.setItem('users',JSON.stringify([{firstname:'guestFirstname', lastname:'guestLastname', password:'guest', phone:'+374 55 55 55', email:'guest@gmail.com'}]));
   }
 
   login(){
     if(this.userForm.valid){
-      this.userService.login(this.userForm.value);
+      this.valid=true;
+      const userExist = this.userService.login(this.userForm.value);
+      if(userExist){
+        this.router.navigate(['/dashboard']);
+      }
+    }else{
+      this.valid = false;
+      this.router.navigate(['/login']);
     }
-    this.valid = false;
-    this.router.navigate(['/login']);
   }
 
   isValid(){
