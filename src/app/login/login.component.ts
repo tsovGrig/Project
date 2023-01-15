@@ -24,7 +24,6 @@ export class LoginComponent {
     private router: Router,
     private userService:UserService
     ) {
-    localStorage.setItem('users',JSON.stringify([{firstname:'guestFirstname', lastname:'guestLastname', password:'guest', phone:'+374 55 55 55', email:'guest@gmail.com'}]));
   }
 
   login(){

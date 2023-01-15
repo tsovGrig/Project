@@ -1,6 +1,13 @@
 import {Login} from "../interfaces/user.interface"
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Injectable} from "@angular/core";
+
+@Injectable()
 export class UserService {
-  constructor() {
+  private url = '/assets/json/users.json';
+  private users:any;
+  constructor(private http:HttpClient) {
+    this.getUsers();
   }
 
   login({email, password}:any){
@@ -8,8 +15,7 @@ export class UserService {
       email,
       password
     }
-    const userData:any = localStorage.getItem('users');
-    const users = JSON.parse(userData);
+    const users = this.users;
 
     const findUser = users.find(function(item:any) {
       for (var key in filter) {
@@ -18,13 +24,20 @@ export class UserService {
       }
       return true;
     });
-
     if(findUser){
-      localStorage.setItem('loggedInUser', JSON.stringify(findUser));
+      const {password, ...userData} = findUser;
+      localStorage.setItem('loggedInUser', JSON.stringify(userData));
       return true;
     }else{
       return false;
     }
+  }
+
+  getUsers(){
+    const url = "/assets/json/users.json";
+     this.http.get(url).subscribe((response)=>{
+      this.users = response;
+    })
   }
 
   logout(){
