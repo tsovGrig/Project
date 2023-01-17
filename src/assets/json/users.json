@@ -1,3 +1,4 @@
 [
-  {"firstname":"guestFirstname", "lastname":"guestLastname", "password":"guest", "phone":"+374 55 55 55", "email":"guest@gmail.com"}
+  {"_id":"1","firstname":"guestFirstname", "lastname":"guestLastname", "password":"guest", "phone":"+374 55 55 55", "email":"guest@gmail.com"},
+  {"_id":"2","firstname":"admin", "lastname":"admin", "password":"admin", "phone":"+374 55 50 55", "email":"admin@gmail.com"}
 ]

@@ -33,6 +33,11 @@ export class UserService {
     }
   }
 
+  getLoggedInUser(){
+    const userData:any = localStorage.getItem('loggedInUser');
+    return JSON.parse(userData);
+  }
+
   getUsers(){
     const url = "/assets/json/users.json";
      this.http.get(url).subscribe((response)=>{
