@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
-import { NewOrdersComponent } from './new-orders/new-orders.component';
+import { TrainingsComponent } from './trainings/trainings.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { ReactiveFormsModule} from "@angular/forms";
 import {UserService} from "./services/user.service";
 import {AuthGuard} from "./guards/auth-guard.guard";
+import { VacanciesComponent } from './vacancies/vacancies.component';
+import { ProjectsComponent } from './projects/projects.component';
 
 @NgModule({
   declarations: [
@@ -20,10 +22,12 @@ import {AuthGuard} from "./guards/auth-guard.guard";
     LoginComponent,
     DashboardComponent,
     MainLayoutComponent,
-    NewOrdersComponent,
+    TrainingsComponent,
     ProfileComponent,
     RegistrationComponent,
     OrderDetailsComponent,
+    VacanciesComponent,
+    ProjectsComponent,
   ],
   imports: [
     BrowserModule,

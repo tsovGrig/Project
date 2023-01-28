@@ -1,48 +1,6 @@
-<app-main-layout>
 <div class="container">
   <div class="login-form">
-    <form>
-      <!--Email Input -->
-      <div class="mb-3">
-        <label for="email"
-               class="label-form">
-          Email
-        </label>
-        <input type="email"
-               class="form-control"
-               id="email"
-               placeholder=email>
-      </div>
-      <!--Password input-->
-      <div class="mb-3">
-        <label for="password"
-               class="label-form">
-          Password
-        </label>
-        <input type="password"
-               class="form-control"
-               id="password"
-               placeholder="password">
-        <!--      <div id="password-help-block"-->
-        <!--           class="form-text">-->
-        <!--        Password needs to be 8 characters long-->
-        <!--      </div>-->
-      </div>
-      <!--Password input-->
-      <div class="mb-3">
-        <label for="confirmPassword"
-               class="label-form">
-          Confirm Password
-        </label>
-        <input type="password"
-               class="form-control"
-               id="confirmPassword"
-               placeholder="password">
-        <!--      <div id="password-help-block"-->
-        <!--           class="form-text">-->
-        <!--        Password needs to be 8 characters long-->
-        <!--      </div>-->
-      </div>
+    <form [formGroup]="registrationForm">
       <!--Firstname input-->
       <div class="mb-3">
         <label for="firstname"
@@ -52,11 +10,17 @@
         <input type="text"
                class="form-control"
                id="firstname"
-               placeholder="first name">
+               placeholder="first name"
+               formControlName="firstName">
         <!--      <div id="password-help-block"-->
         <!--           class="form-text">-->
         <!--        Password needs to be 8 characters long-->
         <!--      </div>-->
+      </div>
+      <div *ngIf="formErrors.firstName">
+        <div *ngIf="formErrors.firstName.required" style="color:red;" class="form-text">
+          First Name is required.
+        </div>
       </div>
       <!--lastname input-->
       <div class="mb-3">
@@ -67,40 +31,86 @@
         <input type="text"
                class="form-control"
                id="lastname"
-               placeholder="last name">
+               placeholder="last name"
+               formControlName="lastName">
         <!--      <div id="password-help-block"-->
         <!--           class="form-text">-->
         <!--        Password needs to be 8 characters long-->
         <!--      </div>-->
       </div>
-      <!--Phone number -->
-      <div>
-        <label for="phone"
-               class="label-form">
-          Phone
-        </label>
-        <input type="tel"
-               class="form-control"
-               id="phone"
-               placeholder="phone">
+      <div *ngIf="formErrors.lastName">
+        <div *ngIf="formErrors.lastName.required" style="color:red;" class="form-text">
+          Last Name is required.
+        </div>
       </div>
-      <!--Checkbox -->
-      <!--    <div class="mb-3 form-check">-->
-      <!--      <input type="checkbox"-->
-      <!--             class="form-check-input"-->
-      <!--             id="checkbox">-->
-      <!--      <label class="form-check-label"-->
-      <!--             for="checkbox">-->
-      <!--        Check me!-->
-      <!--      </label>-->
-      <!--    </div>-->
-      <!-- Submit Button -->
-      <button type="submit"
+      <!--Email Input -->
+      <div class="mb-3">
+        <label for="email"
+               class="label-form">
+          Email
+        </label>
+        <input type="email"
+               class="form-control"
+               id="email"
+               placeholder=email
+               formControlName="email">
+      </div>
+      <div *ngIf="formErrors.email">
+        <div *ngIf="formErrors.email.required" style="color:red;" class="form-text">
+          Email is required.
+        </div>
+        <div *ngIf="formErrors.email.email" style="color:red;" class="form-text">
+          Email should be valid email address.
+        </div>
+      </div>
+
+      <!--Password input-->
+      <div class="mb-3">
+        <label for="password"
+               class="label-form">
+          Password
+        </label>
+        <input type="password"
+               class="form-control"
+               id="password"
+               placeholder="password"
+               formControlName="password">
+        <!--      <div id="password-help-block"-->
+        <!--           class="form-text">-->
+        <!--        Password needs to be 8 characters long-->
+        <!--      </div>-->
+      </div>
+      <div *ngIf="formErrors.password">
+        <div *ngIf="formErrors.password.required" style="color:red;" class="form-text">
+          Password is required.
+        </div>
+      </div>
+      <div>
+        <div>
+          <div>
+            <label for="role"
+                   class="label-form">
+              Role
+            </label>
+          </div>
+          <select id="role" class="form-select" aria-label="Default select example" formControlName="roleId">
+            <option disabled [selected]="true">Choose Role</option>
+            <option *ngFor="let role of roles" value="{{role.id}}">{{role.name}}</option>
+          </select>
+        </div>
+        <div *ngIf="formErrors.roleId">
+          <div *ngIf="formErrors.roleId.required" style="color:red;" class="form-text">
+            Role is required.
+          </div>
+        </div>
+      </div>
+      <div *ngFor="let error of errors" style="color:red;" class="form-text">
+        {{error}}
+      </div>
+      <button (click)="register()" type="submit"
               class="btn btn-primary">
         Submit
       </button>
     </form>
   </div>
 </div>
-</app-main-layout>
-

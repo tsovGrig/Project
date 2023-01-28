@@ -2,47 +2,27 @@
   <!-- Sidebar -->
   <div id="sidebar">
     <header>
-      <a href="/dashboard">My App</a>
+      <a [routerLink]="['dashboard']">My App</a>
     </header>
     <ul class="nav">
       <li>
-        <a href="/dashboard">
+        <a [routerLink]="['dashboard']">
           <i class="zmdi zmdi-view-dashboard"></i> Dashboard
         </a>
       </li>
       <li>
-        <a href="#">
-          <i class="zmdi zmdi-chart"></i> Statistics
+        <a [routerLink]="['vacancies']">
+          <i class="zmdi zmdi-case"></i> Vacancies
         </a>
       </li>
       <li>
-        <a href="#">
-          <i class="zmdi zmdi-map"></i> Live Map
+        <a [routerLink]="['trainings']">
+          <i class="zmdi zmdi-laptop-chromebook"></i> Trainings
         </a>
       </li>
       <li>
-        <a href="#">
-          <i class="zmdi zmdi-city"></i> Companies
-        </a>
-      </li>
-      <li>
-        <a href="/new-orders">
-          <i class="zmdi zmdi-pizza"></i> New Orders
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="zmdi zmdi-pizza"></i> In Process Orders
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="zmdi zmdi-pizza"></i> Rejected Orders
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="zmdi zmdi-pizza"></i> Completed Orders
+        <a [routerLink]="['projects']" >
+          <i class="zmdi zmdi-book"></i> Projects
         </a>
       </li>
     </ul>
@@ -59,14 +39,14 @@
           </p>
           <div class="collapse" id="collapseExample" style="position:absolute; padding:12px;">
             <div class="card card-body" style="padding:10px; border:1px solid #e7e7e7; background-color:white; color:#000000">
-              <p><a href="/profile"><i class="zmdi zmdi-account-circle"></i> Profile</a></p>
+              <p><a [routerLink]="['profile']"><i class="zmdi zmdi-account-circle"></i> Profile</a></p>
               <p><button (click)="logout()">Log out</button></p>
             </div>
           </div>
         </div>
       </div>
     </nav>
-   <ng-content></ng-content>
+    <router-outlet></router-outlet>
   </div>
 </div>
 

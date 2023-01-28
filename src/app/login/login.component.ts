@@ -12,6 +12,7 @@ import {Login} from "../interfaces/user.interface";
 export class LoginComponent {
   valid:boolean = true;
   userExist:boolean = true;
+  public errors:[] = [];
 
 
   userForm = this.fb.group({
@@ -29,12 +30,18 @@ export class LoginComponent {
   login(){
     if(this.userForm.valid){
       this.valid=true;
-      const userExist = this.userService.login(this.userForm.value);
-      if(userExist){
-        this.router.navigate(['/dashboard']);
-      }else{
-        this.userExist = false;
+      const user = this.userService.login(this.userForm.value);
+      user.subscribe(data=>{
+        console.log(data);
+        if(data.success){
+          localStorage.setItem('accessToken', data.data.accessToken);
+          this.router.navigate(['/main/dashboard']);
+        }
+      },
+      (err)=>{
+        this.errors = err.error.error.message;
       }
+      );
     }else{
       this.valid=false;
     }
@@ -55,6 +62,4 @@ export class LoginComponent {
     }
     return true;
   }
-
-
 }

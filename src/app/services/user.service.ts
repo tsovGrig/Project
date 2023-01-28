@@ -1,51 +1,58 @@
 import {Login} from "../interfaces/user.interface"
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Injectable} from "@angular/core";
+import jwt_decode from 'jwt-decode';
 
 @Injectable()
 export class UserService {
-  private url = '/assets/json/users.json';
-  private users:any;
+
   constructor(private http:HttpClient) {
-    this.getUsers();
+
   }
 
-  login({email, password}:any){
-    const filter:any = {
-      email,
-      password
-    }
-    const users = this.users;
-
-    const findUser = users.find(function(item:any) {
-      for (var key in filter) {
-        if (item[key] === undefined || item[key] != filter[key])
-          return false;
-      }
-      return true;
-    });
-    if(findUser){
-      const {password, ...userData} = findUser;
-      localStorage.setItem('loggedInUser', JSON.stringify(userData));
-      return true;
-    }else{
-      return false;
-    }
+  login(user:any){
+    return this.http.post<any>("https://api.dev.padcllc.com/auth/login", user);
   }
 
   getLoggedInUser(){
-    const userData:any = localStorage.getItem('loggedInUser');
-    return JSON.parse(userData);
+    return localStorage.getItem('accessToken');
+
   }
 
-  getUsers(){
-    const url = "/assets/json/users.json";
-     this.http.get(url).subscribe((response)=>{
-      this.users = response;
-    })
-  }
 
   logout(){
-    localStorage.removeItem('loggedInUser');
+    localStorage.removeItem('accessToken');
+  }
+
+  getRoles(){
+    return this.http.get<any>("https://api.dev.padcllc.com/role/all");
+  }
+
+  register(userData:any){
+    const {roleId, ...user} = userData;
+    user.roleId = Number(roleId);
+    return this.http.post<any>("https://api.dev.padcllc.com/auth/registration", user);
+  }
+
+  getUserId(){
+    const token = localStorage.getItem('accessToken');
+    if(token){
+      try {
+        const userData = jwt_decode(token);
+        console.log(userData);
+        return userData;
+      } catch(Error) {
+        return null;
+      }
+    }
+    return null;
+  }
+
+  getMe(){
+    const headers:any = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.getLoggedInUser()}`
+    })
+    return this.http.get<any>(`https://api.dev.padcllc.com/user/me`, {headers});
   }
 }
