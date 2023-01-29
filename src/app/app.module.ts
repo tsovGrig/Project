@@ -15,6 +15,10 @@ import {UserService} from "./services/user.service";
 import {AuthGuard} from "./guards/auth-guard.guard";
 import { VacanciesComponent } from './vacancies/vacancies.component';
 import { ProjectsComponent } from './projects/projects.component';
+import {TrainingService} from "./services/training.service";
+import {ProjectService} from "./services/project.service";
+import { ProjectDetailComponent } from './projects/project-detail/project-detail.component';
+import { CreateProjectComponent } from './create-project/create-project.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +32,8 @@ import { ProjectsComponent } from './projects/projects.component';
     OrderDetailsComponent,
     VacanciesComponent,
     ProjectsComponent,
+    ProjectDetailComponent,
+    CreateProjectComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +41,7 @@ import { ProjectsComponent } from './projects/projects.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [UserService, AuthGuard],
+  providers: [UserService, TrainingService, ProjectService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

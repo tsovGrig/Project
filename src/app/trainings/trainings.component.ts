@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-trainings',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./trainings.component.css']
 })
 export class TrainingsComponent {
+  trainings: any;
 
+  constructor( private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.data.subscribe((response: any) => {
+      this.trainings = response.trainings;
+      console.log(this.trainings);
+    });
+  }
 }
