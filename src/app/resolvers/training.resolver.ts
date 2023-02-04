@@ -14,6 +14,10 @@ export class TrainingResolver implements Resolve<boolean> {
   constructor(private trainingService: TrainingService) {
   }
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    return this.trainingService.getTrainings().pipe();
+    return this.trainingService.getTrainings().pipe(map(training => training.data,
+      catchError(error => {
+        return of('No data');
+      })));
+
   }
 }

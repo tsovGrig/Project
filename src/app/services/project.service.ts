@@ -10,23 +10,23 @@ export class ProjectService{
  }
 
  getAllProjects(){
-   return this.http.get<any>(`https://api.dev.padcllc.com/projects/all`, {headers:this.headers});
+   return this.http.get<any>(`/projects/all` );
  }
 
  getProjectById(id:number){
-   return this.http.get<any>(`https://api.dev.padcllc.com/projects/${id}`, {headers:this.headers});
+   return this.http.get<any>(`/projects/${id}`);
  }
 
  updateProject(id:number, project:any){
-   return this.http.put<any>(`https://api.dev.padcllc.com/projects/${id}`, project, {headers:this.headers});
+   return this.http.put<any>(`/projects/${id}`, project, );
  }
 
  addProject(project:any){
-   return this.http.post<any>(`https://api.dev.padcllc.com/projects`, project,{headers:this.headers});
+   return this.http.post<any>(`/projects`, project,);
  }
 
  deleteProject(id:number){
-   return this.http.delete<any>(`https://api.dev.padcllc.com/projects/${id}`, {headers:this.headers});
+   return this.http.delete<any>(`/projects/${id}`, );
  }
 
  getHeader(){

@@ -1,1 +1,27 @@
-<p>trainings work.</p>
+<div class="container-fluid">
+  <a [routerLink]="['/main/create/training']"  class="btn btn-success btn-sm">Add</a>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Created On</th>
+      <th scope="col">Type</th>
+      <th scope="col">Image</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let training of trainings">
+      <th scope="row">{{training.id}}</th>
+      <td>{{training.name}}</td>
+      <td>{{training.description}}</td>
+      <td>{{training.date}}</td>
+      <td>{{training.type}}</td>
+      <td><img src="{{siteurl}}{{training.mediaFiles.path}}"></td>
+      <td><a [routerLink]="[training.id]"><i class="zmdi zmdi-edit"></i></a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

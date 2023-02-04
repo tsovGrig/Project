@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -19,6 +19,8 @@ import {TrainingService} from "./services/training.service";
 import {ProjectService} from "./services/project.service";
 import { ProjectDetailComponent } from './projects/project-detail/project-detail.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
+import {RequestInterceptor} from "./interceptors/request.interceptor";
+import { CreateTrainingComponent } from './create-training/create-training.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { CreateProjectComponent } from './create-project/create-project.componen
     ProjectsComponent,
     ProjectDetailComponent,
     CreateProjectComponent,
+    CreateTrainingComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,9 @@ import { CreateProjectComponent } from './create-project/create-project.componen
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [UserService, TrainingService, ProjectService, AuthGuard],
+  providers: [UserService, TrainingService, ProjectService, AuthGuard,      {
+    provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi:true
+  },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

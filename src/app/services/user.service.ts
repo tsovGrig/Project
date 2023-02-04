@@ -11,7 +11,7 @@ export class UserService {
   }
 
   login(user:any){
-    return this.http.post<any>("https://api.dev.padcllc.com/auth/login", user);
+    return this.http.post<any>("/auth/login", user);
   }
 
   getLoggedInUser(){
@@ -25,13 +25,13 @@ export class UserService {
   }
 
   getRoles(){
-    return this.http.get<any>("https://api.dev.padcllc.com/role/all");
+    return this.http.get<any>("/role/all");
   }
 
   register(userData:any){
     const {roleId, ...user} = userData;
     user.roleId = Number(roleId);
-    return this.http.post<any>("https://api.dev.padcllc.com/auth/registration", user);
+    return this.http.post<any>("/auth/registration", user);
   }
 
   getUserId(){
@@ -53,6 +53,6 @@ export class UserService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.getLoggedInUser()}`
     })
-    return this.http.get<any>(`https://api.dev.padcllc.com/user/me`, {headers});
+    return this.http.get<any>(`/user/me`, {headers});
   }
 }

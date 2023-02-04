@@ -15,6 +15,7 @@ import {TrainingResolver} from "./resolvers/training.resolver";
 import {ProjectDetailComponent} from "./projects/project-detail/project-detail.component";
 import {ProjectDetailResolver} from "./resolvers/project-detail.resolver";
 import {CreateProjectComponent} from "./create-project/create-project.component";
+import {CreateTrainingComponent} from "./create-training/create-training.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -24,10 +25,12 @@ const routes: Routes = [
       {path:'dashboard',component: DashboardComponent},
       {path:'profile', component:ProfileComponent, resolve:{ profile:ProfileResolver }},
       {path:'trainings', component:TrainingsComponent, resolve:{trainings:TrainingResolver}},
-      {path:'projects', component:ProjectsComponent, resolve:{projects:ProjectResolver}},
+      {path:'projects', component:ProjectsComponent, resolve: {projects:ProjectResolver}, pathMatch: 'full' },
       {path:'projects/:id', component:ProjectDetailComponent,resolve:{projectDetail:ProjectDetailResolver},  pathMatch: 'full'},
       {path:'create/project', component:CreateProjectComponent},
       {path:'vacancies', component:VacanciesComponent},
+      {path:'trainings', component:TrainingsComponent, pathMatch: 'full' },
+      {path:'create/training', component:CreateTrainingComponent},
     ]},
 ];
 

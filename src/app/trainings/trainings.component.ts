@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+import {SiteUrl} from "../common/constants";
+import {TrainingService} from "../services/training.service";
 
 @Component({
   selector: 'app-trainings',
@@ -8,11 +10,13 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class TrainingsComponent {
   trainings: any;
+  siteurl = SiteUrl;
 
-  constructor( private activatedRoute: ActivatedRoute) {
+  constructor( private activatedRoute: ActivatedRoute, private trainingService:TrainingService) {
     this.activatedRoute.data.subscribe((response: any) => {
       this.trainings = response.trainings;
       console.log(this.trainings);
     });
   }
+
 }

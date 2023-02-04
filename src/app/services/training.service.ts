@@ -7,10 +7,12 @@ export class TrainingService{
   }
 
   getTrainings(){
-    const headers:any = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
-    })
-    return this.http.get<any>(`https://api.dev.padcllc.com/trainings`, {headers});
+    return this.http.get<any>(`/trainings`, );
   }
+
+  addTraining(training:any){
+    training.date = new Date();
+      return this.http.post<any>(`/trainings`, training,);
+  }
+
 }
