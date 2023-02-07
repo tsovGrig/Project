@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <a [routerLink]="['/main/projects/create']"  class="btn btn-success btn-sm">Add</a>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let project of projects">
+      <th scope="row">{{project.id}}</th>
+      <td>{{project.title}}</td>
+      <td>{{project.description.substr(0, 30)}}</td>
+      <td><a [routerLink]="[project.id]"><i class="zmdi zmdi-edit"></i></a></td>
+      <td>
+        <a (click)="deleteProject(project.id)" ><i class="zmdi zmdi-delete"></i></a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -5,7 +5,7 @@ import {
   ActivatedRouteSnapshot
 } from '@angular/router';
 import {Observable, of, catchError, map} from 'rxjs';
-import {ProjectService} from "../services/project.service";
+import {ProjectService} from "../project/project.service";
 
 @Injectable({
   providedIn: 'root'

@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <div class="training-container">
+    <form [formGroup]="trainingForm">
+      <div class="" style="margin-bottom:20px;">
+        <button type="submit" class="btn btn-primary" (click)="saveTraining()">Save</button>
+      </div>
+      <!-- title input-->
+      <div class="mb-3 ">
+        <label for="name"
+               class="label-form">
+          Name
+        </label>
+        <input type="text"
+               class="form-control"
+               id="name"
+               formControlName="name">
+      </div>
+  <!--description input-->
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                  formControlName="description"></textarea>
+      </div>
+      <!-- image input-->
+      <div class="mb-3 ">
+        <div class="form-group">
+          <label for="image">Image</label>
+          <input  (change)="onChange($event)" formControlName="image" type="file" class="form-control-file" id="image">
+        </div>
+
+      </div>
+
+      <!-- type input-->
+      <div class="mb-3 ">
+        Type
+        <div>
+        <select id="role" class="form-select" aria-label="Default select example" formControlName="type">
+          <option disabled [selected]="true">Choose Type</option>
+          <option *ngFor="let type of types" value="{{type.value}}">{{type.name}}</option>
+        </select>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
